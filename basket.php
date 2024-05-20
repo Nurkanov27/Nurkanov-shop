@@ -1,0 +1,230 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин печатной продукции "Nurkanov"</title>
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+       
+button {
+    background-color: #d6ae01;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Добавлено затенение */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для кнопки */
+}
+
+button:hover {
+    background-color: #c29500; /* Изменен цвет при наведении */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Изменена тень при наведении */
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="images/logo.png" alt="Логотип">
+        <nav>
+            <ul>
+            <li><a href="main.php" id="home-link">Главная</a></li>
+            <li><a href="catalog.php"  id="catalog-link">Каталог</a></li>
+            <li><a href="account.php" id="account-link">Личный кабинет</a></li>
+            <li><a href="basket.php" class="active-link" id="basket-link">Корзина</a></li>
+            <li><a href="joinreg.php" id="joinreg-link">Войти/Регистрация</a></li>
+            </ul>
+        </nav>
+<!-- Русский -->
+<img src="images/ru.jpg" alt="Русский" onclick="loadTranslations('ru')" style="cursor: pointer; max-width: 70px; max-height: 70px; margin-left: 100px;">
+<!-- Казахский -->
+<img src="images/kz.jpg" alt="Казахский" onclick="loadTranslations('kz')" style="cursor: pointer; max-width: 70px; max-height: 70px;">
+
+<div class="search">
+    <input type="text" id="searchInput" placeholder="Поиск товаров...">
+    <!-- Изменение атрибута onclick -->
+    <button onclick="searchInCatalog()">Найти</button>
+</div>
+
+    </header>
+    <!-- Content -->
+    <main>
+        <!-- Корзина -->
+        <section class="cart">
+            <h1 id="basket-k">Корзина</h1>
+            <div id="cartItems">
+                <!-- Здесь будет отображаться список выбранных товаров -->
+                <?php
+                session_start();
+                if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0) {
+                    $servername = "localhost";
+                    $username = "Nurkanov";
+                    $password = "pass1234";
+                    $dbname = "products";
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+                    $ids = implode(',', array_keys($_SESSION['cart']));
+                    $sql = "SELECT * FROM products WHERE id IN ($ids)";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        $totalPrice = 0; // Общая сумма заказа
+                        while($row = $result->fetch_assoc()) {
+                            $quantity = $_SESSION['cart'][$row['id']];
+                            $subtotal = $row['price'] * $quantity;
+                            $totalPrice += $subtotal; // Увеличиваем общую сумму
+                            echo "<div class='product'>";
+                            echo "<h2>" . $row["name"] . "</h2>";
+                            echo "<img src='" . $row["image_url"] . "' alt='" . $row["name"] . "'>";
+                            echo "<p>" . $row["description"] . "</p>";
+			    echo "<p id='cena-tg'>Цена: " . $row['price'] . " тг</p>";
+                            echo "<p id='kol-vo'>Количество: " . $quantity . "</p>";
+                            echo "<p id='poditog'>Подытог: $subtotal  тг".  "</p>"; // Выводим подытог по каждому товару
+                            echo "<form action='remove_from_cart.php' method='post'>
+                                    <input type='hidden' name='product_id' value='" . $row['id'] . "'>
+                                    <button type='submit'id='delete-from'>Удалить из корзины</button>
+                                  </form>";
+                            echo "</div>";
+                        }
+                        echo "<p id='all-summa'>Общая сумма к оплате:  $totalPrice  тг" . "</p>"; // Выводим общую сумму к оплате
+                    } else {
+                        echo "<p id='basket-clear'>Корзина пуста.</p>";
+                    }
+                    $conn->close();
+                } else {
+                    echo "<p id='basket-clear'>Корзина пуста.</p>";
+                }
+                ?>
+            </div>
+        </section>
+        <!-- Кнопки "В каталог" и "К оплате" -->
+        <div class="checkout-buttons">
+            <button onclick="vcatalog()" id="v-katalog">В каталог</button>
+            <form action="checkout.php" method="post">
+                <button type="submit" id="k oplate">К оплате</button>
+            </form>
+        </div>
+<script>
+    function vcatalog() {
+        window.location.href = "catalog.php";
+    }
+</script>
+    </main>
+    <!-- Footer -->
+ <footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3 id="contacts-header">Контакты</h3>
+            <p id="phone">Телефон: +7 (XXX) XXX-XX-XX</p>
+            <p id="email">Электронная почта: nurkanovshop@gmail.com</p>
+            <p id="address">Адрес: г. Лисаковск, ул. Сатпаева, д. 123, офис 456</p>
+        </div>
+        <div class="footer-column">
+            <h3 id="info-header">Информация</h3>
+            <ul>
+                <li><a class="nav-link" href="aboutus.php" id="aboutus-link">О нас</a></li>
+                <li><a class="nav-link" href="dostavka.php" id="delivery-link">Доставка</a></li>
+                <li><a class="nav-link" href="pay.php" id="payment-link">Оплата</a></li>
+                <li><a class="nav-link" href="vozvrat.php" id="return-link">Возврат и обмен</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3 id="support-header">Служба поддержки</h3>
+            <ul>
+                <li><a class="nav-link" href="questions.php" id="faq-link">Часто задаваемые вопросы</a></li>
+                <li><a class="nav-link" href="svyaz.php" id="contact-link">Связаться с нами</a></li>
+                <li><a class="nav-link" href="support.php" id="support-link">Помощь и поддержка</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>&copy; 2024 Интернет-магазин печатной продукции "Nurkanov". Все права защищены.</p>
+    </div>
+</footer>
+<script>
+    function loadTranslations(language) {
+        // Определение URL-адреса файла перевода
+        let translationsFile = "";
+        if (language === "ru") {
+            translationsFile = "translations/translations_ru.js";
+        } else if (language === "kz") {
+            translationsFile = "translations/translations_kz.js";
+        }
+
+        // Создание тега скрипта для загрузки файла перевода
+        const scriptTag = document.createElement("script");
+        scriptTag.src = translationsFile;
+
+        // После загрузки файла применяем переводы
+        scriptTag.onload = function () {
+            applyTranslations(language);
+        };
+
+        // Добавление тега скрипта в заголовок документа
+        document.head.appendChild(scriptTag);
+    }
+
+    function applyTranslations(language) {
+        const elementsToTranslate = {
+            "home-link": { "ru": "Главная", "kz": "Басты бет" },
+            "catalog-link": { "ru": "Каталог", "kz": "Каталог" },
+            "account-link": { "ru": "Личный кабинет", "kz": "Жеке кабинет" },
+            "basket-link": { "ru": "Корзина", "kz": "Себет" },
+            "joinreg-link": { "ru": "Войти/Регистрация", "kz": "Кіру/Тіркелу" },
+            "contacts-header": { "ru": "Контакты", "kz": "Байланыстар" },
+            "info-header": { "ru": "Информация", "kz": "Мәлімет" },
+            "phone": { "ru": "Телефон: +7 (XXX) XXX-XX-XX", "kz": "Телефон: +7 (XXX) XXX-XX-XX" },
+            "email": { "ru": "Электронная почта: nurkanovshop@gmail.com", "kz": "Электрондық пошта: nurkanovshop@gmail.com" },
+            "address": { "ru": "Адрес: г. Лисаковск, ул. Сатпаева, д. 123, офис 456", "kz": "Мекенжайы: Лисаковск қ., Сәтпаев к-сі, 123-үй, 456-кеңсе" },
+            "info-header": { "ru": "Информация", "kz": "Ақпарат" },
+    "cena-tg": { "ru": "Цена:  тг", "kz": "Баға:  тг" },
+    "kol-vo": { "ru": "Количество: ", "kz": "Саны: " },
+    "poditog": { "ru": "Подытог: тг", "kz": "Төменше: тг" },
+    "basket-k": { "ru": "Корзина", "kz": "Себет" },
+    "basket-clear": { "ru": "Корзина пуста.", "kz": "Себет бос." },
+    "v-katalog": { "ru": "В каталог", "kz": "Каталогқа өту" },
+    "k oplate": { "ru": "К оплате", "kz": "Төлеу" },
+            "aboutus-link": { "ru": "О нас", "kz": "Біз туралы" },
+            "delivery-link": { "ru": "Доставка", "kz": "Жеткізу" },
+            "payment-link": { "ru": "Оплата", "kz": "Төлем" },
+            "return-link": { "ru": "Возврат и обмен", "kz": "Қайтару және айырбастау" },
+            "support-header": { "ru": "Служба поддержки", "kz": "Қолдау қызметі" },
+            "faq-link": { "ru": "Часто задаваемые вопросы", "kz": "Жиі қойылатын сұрақтар" },
+            "contact-link": { "ru": "Связаться с нами", "kz": "Бізбен байланысыңыз" },
+            "support-link": { "ru": "Помощь и поддержка", "kz": "Көмек және қолдау" }
+        };
+
+        // Применение переводов
+        for (const [key, value] of Object.entries(elementsToTranslate)) {
+            const element = document.getElementById(key);
+            if (element) {
+                element.innerText = value[language];
+            }
+        }
+}
+    function searchInCatalog() {
+        // Получаем значение из поля ввода поиска
+        const searchTerm = document.getElementById("searchInput").value;
+        // Перенаправляем пользователя на страницу catalog.php с параметром поискового запроса
+        window.location.href = "catalog.php?search=" + encodeURIComponent(searchTerm);
+    }
+</script>
+</body>
+</html>

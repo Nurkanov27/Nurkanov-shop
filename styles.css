@@ -1,0 +1,629 @@
+/* Общие стили */
+body {
+    font-family: 'Roboto', sans-serif; /* Шрифт Roboto */
+    margin: 0;
+    padding: 0;
+    font-size: 22px; /* Увеличение базового размера текста */
+    overflow-x: hidden; /* Скрытие горизонтальной полосы прокрутки */
+}
+
+/* Header */
+header {
+    background-color: #333; /* Изменение цвета верхней панели */
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавление тени для подчеркивания */
+    width: 100%; /* Занимает всю ширину экрана */
+}
+
+.logo {
+    font-size: 20px;
+}
+
+nav {
+    text-align: center; /* Центрирует содержимое внутри навигационного блока */
+}
+
+/* Общие стили для навигации */
+nav ul {
+    display: inline-block; /* Делает список горизонтальным */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px; /* Уменьшаем расстояние между пунктами меню */
+}
+
+/* Стили для пунктов меню */
+nav ul li a {
+    text-decoration: none;
+    color: #d6ae01;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: 2px solid transparent; /* Обводка пунктов меню */
+}
+
+nav ul li a:hover {
+    background-color: #d6ae01; /* Цвет фона при наведении */
+    color: #333; /* Цвет текста при наведении */
+    border-color: #333; /* Изменение цвета обводки при наведении */
+}
+
+/* Стили для активной ссылки */
+nav ul li.active a {
+    background-color: #d6ae01;
+    color: #ffffff;
+}
+
+/* Стили для пунктов меню "О нас", "Доставка", "Оплата", "Возврат и обмен", "Часто задаваемые вопросы", "Связаться с нами", "Помощь" и "Поддержка" */
+.nav-link {
+    text-decoration: none;
+    color: #d6ae01;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: 2px solid transparent; /* Обводка пунктов меню */
+}
+
+.nav-link:hover {
+    background-color: #d6ae01; /* Цвет фона при наведении */
+    color: #333; /* Цвет текста при наведении */
+    border-color: #333; /* Изменение цвета обводки при наведении */
+}
+
+/* Стили для активной ссылки */
+.active-link {
+    background-color: #d6ae01;
+    color: #ffffff;
+}
+
+/* Остальные стили для секций страницы */
+/* Можете добавить собственные стили в зависимости от дизайна */
+
+/* Стиль для контейнера страницы */
+html, body {
+    height: 100%;
+}
+
+/* Стили для обёртки содержимого страницы (кроме футера) */
+.wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+.language-selector {
+    margin-right: 20px;
+}
+
+.language-selector button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.main-banner {
+    background: url('images/banner.jpg') no-repeat center center/cover;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000; /* Изменение цвета текста на черный */
+    text-align: center;
+}
+
+.main-banner .banner-content {
+    background-color: #fff; /* Белый фон */
+    padding: 50px;
+    border-radius: 10px;
+    border: 3px solid #000; /* Чёрная обводка */
+}
+
+
+.shop-now-btn {
+    background-color: #d6ae01;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Добавлено затенение */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для кнопки */
+}
+
+.shop-now-btn:hover {
+    background-color: #c29500; /* Изменен цвет при наведении */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Изменена тень при наведении */
+}
+
+.about-us, .promotions, .featured-products, .latest-news, .customer-reviews {
+    padding: 50px 20px;
+    background-color: #fff;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.promotions-grid, .product-grid, .news-grid, .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.promotion-card, .product-card, .news-card, .review-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    border: 3px solid #000; /* Увеличение толщины обводки и изменение цвета */
+}
+
+.promotion-card:hover, .product-card:hover, .news-card:hover, .review-card:hover {
+    transform: translateY(-5px);
+    border-color: #c29500; /* Изменение цвета обводки при наведении */
+}
+
+
+.promotion-card img, .product-card img, .news-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+}
+
+.promotion-info, .product-info, .news-info, .review-info {
+    padding: 15px;
+}
+
+.promotion-info h3, .product-info h3, .news-info h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.promotion-info p, .product-info p, .news-info p, .review-info p {
+    font-size: 1em;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.product-link, .news-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #d6ae01;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Добавлено затенение */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Тень для кнопки */
+}
+
+.product-link:hover, .news-link:hover {
+    background-color: #d6ae01; /* Изменен цвет при наведении */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* Стили для футера */
+footer {
+    background-color: #333; /* Цвет фона футера */
+    color: #fff; /* Цвет текста в футере */
+    padding: 40px 20px; /* Увеличиваем внутренний отступ для контента футера */
+    text-align: left; /* Выравнивание текста по левому краю */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Добавление тени для верхней границы футера */
+    margin-top: auto; /* Помещаем футер внизу страницы */
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку при нехватке места */
+    justify-content: space-between;
+}
+
+.footer-column {
+    flex: 1;
+    margin-right: 20px; /* Добавляем небольшой отступ между колонками */
+}
+
+.footer-column:last-child {
+    margin-right: 0; /* Убираем отступ справа у последней колонки */
+}
+
+.footer-column h3 {
+    margin-bottom: 15px; /* Увеличиваем отступ после заголовка */
+    font-size: 20px; /* Уменьшаем размер заголовка */
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px; /* Увеличиваем отступ между элементами списка */
+}
+
+/* Стили для ссылок в футере */
+.footer-column ul li a {
+    text-decoration: none;
+    color: #d6ae01;
+    transition: color 0.3s ease; /* Плавное изменение цвета текста при наведении */
+}
+
+.footer-column ul li a:hover {
+    color: #fff; /* Изменяем цвет текста при наведении */
+}
+
+/* Стили для копирайта */
+.copyright {
+margin-top: 20px;
+text-align: center; /* Выравнивание текста по центру */
+font-size: 14px; /* Уменьшаем размер шрифта */
+}
+.search {
+margin-right: 30px; /* Добавляем внутренний отступ справа */
+}
+.search button {
+background-color: #d6ae01; /* Цвет фона кнопки */
+color: #333; /* Цвет текста кнопки */
+padding: 10px 20px; /* Внутренние отступы кнопки */
+border: none; /* Убираем границу у кнопки */
+border-radius: 5px; /* Закругляем углы кнопки */
+cursor: pointer; /* Изменяем курсор при наведении на кнопку */
+transition: background-color 0.3s ease; /* Плавное изменение цвета фона при наведении */
+}
+
+.search button:hover {
+background-color: #333; /* Изменяем цвет фона кнопки при наведении */
+color: #d6ae01; /* Изменяем цвет текста кнопки при наведении */
+}
+.search {
+margin-right: 30px; /* Добавляем внутренний отступ справа */
+display: flex; /* Устанавливаем flex-контейнер для элементов строки поиска */
+align-items: center; /* Выравниваем элементы по вертикали */
+background-color: #fff; /* Цвет фона строки поиска */
+border-radius: 5px; /* Закругляем углы строки поиска */
+padding: 5px; /* Добавляем небольшие внутренние отступы */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавляем тень для подчеркивания */
+}
+
+.search input[type="text"] {
+flex: 1; /* Растягиваем поле ввода на всю доступную ширину */
+border: none; /* Убираем границу у поля ввода */
+padding: 8px; /* Добавляем внутренние отступы */
+border-radius: 5px; /* Закругляем углы поля ввода */
+font-size: 18px; /* Уменьшаем размер шрифта */
+}
+
+.search button {
+background-color: #d6ae01; /* Цвет фона кнопки */
+color: #333; /* Цвет текста кнопки */
+padding: 8px 15px; /* Внутренние отступы кнопки */
+border: none; /* Убираем границу у кнопки */
+border-radius: 5px; /* Закругляем углы кнопки */
+cursor: pointer; /* Изменяем курсор при наведении на кнопку */
+transition: background-color 0.3s ease; /* Плавное изменение цвета фона при наведении */
+}
+
+.search button:hover {
+background-color: #333; /* Изменяем цвет фона кнопки при наведении */
+color: #d6ae01; /* Изменяем цвет текста кнопки при наведении */
+}
+
+/* Остальные стили для секций страницы */
+/* Можете добавить собственные стили в зависимости от дизайна */
+/* Стили для области после header */
+main {
+background-color: #f9f9f9; /* Цвет фона */
+padding: 50px 20px; /* Внутренние отступы */
+text-align: center; /* Выравнивание текста по центру */
+}
+
+/* Стили для заголовка */
+main h1 {
+font-size: 36px; /* Размер шрифта */
+color: #333; /* Цвет текста */
+margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Стили для обычного текста */
+main p {
+font-size: 18px; /* Размер шрифта */
+color: #666; /* Цвет текста */
+margin-bottom: 20px; /* Отступ снизу */
+}
+/* Стили для каталога товаров */
+.product-catalog {
+text-align: center; /* Выравнивание текста по центру */
+}
+
+/* Стили для заголовка каталога товаров */
+.product-catalog h1 {
+font-size: 32px; /* Размер шрифта */
+margin-bottom: 30px; /* Отступ снизу */
+}
+
+/* Стили для товаров */
+.product {
+display: inline-block; /* Размещаем товары в ряд */
+width: 300px; /* Ширина товара */
+margin: 20px; /* Внешний отступ */
+text-align: left; /* Выравнивание текста по левому краю */
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавление тени */
+border-radius: 5px; /* Закругление углов */
+padding: 20px; /* Внутренние отступы */
+}
+
+/* Стили для изображений товаров */
+.product img {
+width: 100%; /* Ширина изображения равна ширине
+блока */
+border-radius: 5px; /* Закругление углов */
+margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Стили для заголовков товаров */
+.product h2 {
+font-size: 24px; /* Размер шрифта */
+margin-bottom: 10px; /* Отступ снизу */
+}
+
+/* Стили для описания товаров */
+.product p {
+font-size: 16px; /* Размер шрифта */
+color: #666; /* Цвет текста */
+margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Стили для кнопок "Добавить в корзину" */
+.product button {
+background-color: #d6ae01; /* Цвет фона */
+color: #fff; /* Цвет текста */
+padding: 10px 20px; /* Внутренние отступы */
+border: none; /* Убираем границу */
+border-radius: 5px; /* Закругляем углы */
+cursor: pointer; /* Изменение курсора при наведении */
+transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
+}
+
+.product button:hover {
+background-color: #333; /* Изменяем цвет фона при наведении */
+}
+
+/* Добавим стили для товаров в корзине */
+.cart-item {
+border-bottom: 1px solid #ccc;
+padding: 10px 0;
+}
+
+.cart-item p {
+margin: 0;
+}
+
+.cart-item img {
+width: 100px;
+margin-right: 20px;
+vertical-align: middle;
+}
+
+.cart-item h3 {
+margin-bottom: 5px;
+}
+
+.cart-item button {
+background-color: #4CAF50;
+color: white;
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+border-radius: 5px;
+}
+
+.cart-item button:hover {
+background-color: #45a049;
+}
+.login-registration {
+max-width: 400px;
+margin: 0 auto;
+text-align: center;
+padding: 20px;
+}
+
+.login-registration h1 {
+font-size: 24px;
+margin-bottom: 20px;
+}
+
+.login-registration form {
+background-color: #f9f9f9;
+padding: 20px;
+margin-top: 20px;
+border-radius: 10px;
+text-align: left;
+}
+
+.login-registration form h2 {
+margin-top: 0;
+font-size: 20px;
+margin-bottom: 10px;
+}
+
+.login-registration form input[type="text"],
+.login-registration form input[type="email"],
+.login-registration form input[type="password"] {
+width: calc(100% - 40px);
+margin-bottom: 10px;
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 5px;
+box-sizing: border-box;
+font-size: 16px;
+}
+
+.login-registration form button {
+width: calc(100% - 40px);
+padding: 10px;
+background-color: #d6ae01; /* Изменен цвет кнопок */
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+}
+
+.login-registration form button:hover {
+background-color: #b59300; /* Изменен цвет при наведении */
+}
+
+/* Добавленный стиль для основной части */
+main {
+padding-bottom: 100px; /* Высота футера */
+}
+/* Стили для кнопки "Продолжить покупки" */
+.continue-shopping-button {
+display: inline-block;
+padding: 10px 20px;
+font-family: 'Roboto', sans-serif;
+font-weight: 700;
+font-size: 16px;
+color: #fff;
+background-color: #28a745; /* Цвет фона кнопки */
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.continue-shopping-button:hover {
+background-color: #d6ae01; /* Цвет фона кнопки при наведении */
+}
+
+.continue-shopping-button {
+display: inline-block;
+padding: 10px 20px;
+font-family: 'Roboto', sans-serif;
+font-weight: 700;
+font-size: 16px;
+color: #fff;
+background-color: #d6ae01; /* Цвет фона кнопки */
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease;
+margin-top: 20px; /* Отступ от верхнего края на 20px */
+text-decoration: none;
+}
+
+.continue-shopping-button:hover {
+background-color: #d6ae01; /* Цвет фона кнопки при наведении */
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+.continue-shopping-button::before {
+content: ''; /* Добавляем пустое содержимое для псевдоэлемента */
+position: absolute; /* Устанавливаем абсолютное позиционирование */
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(0, 0, 0, 0.5); /* Цвет затемнения */
+border-radius: 5px; /* Закругляем углы, чтобы затемнение соответствовало форме кнопки */
+opacity: 0; /* Устанавливаем начальную непрозрачность 0 */
+transition: opacity 0.3s ease; /* Добавляем переход
+для непрозрачности */
+}
+
+.continue-shopping-button:hover::before {
+opacity: 1; /* При наведении устанавливаем непрозрачность 1 */
+}
+
+.remove-item-button {
+background-color: #d6ae01;
+}
+.delivery {
+padding: 30px;
+background-color: #f8f8f8;
+border-radius: 10px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+margin: 20px auto;
+max-width: 800px;
+}
+
+.delivery h2 {
+font-size: 28px;
+color: #333;
+margin-bottom: 20px;
+text-align: center;
+}
+
+.delivery p {
+font-size: 16px;
+color: #555;
+line-height: 1.6;
+margin-bottom: 15px;
+}
+
+.delivery ul {
+list-style-type: disc;
+margin-left: 20px;
+margin-bottom: 15px;
+}
+
+.delivery ul li {
+font-size: 16px;
+color: #555;
+}
+
+.delivery p:last-child {
+margin-bottom: 0;
+}
+.delivery ul {
+list-style-type: none;
+padding-left: 20px; /* Устанавливаем отступ слева */
+}
+
+.delivery ul li {
+position: relative;
+font-size: 16px;
+color: #555;
+line-height: 1.6;
+padding-left: 20px; /* Устанавливаем отступ слева для текста */
+margin-bottom: 10px; /* Уменьшаем отступ между пунктами */
+}
+
+.delivery ul li:before {
+content: "\2022"; /* Устанавливаем символ точки */
+position: absolute;
+left: 0;
+color: #555; /* Цвет точки */
+}
+
+/* Стиль для кнопки "Личный кабинет" */
+.personal-cabinet-button {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #d6ae01; /* Цвет текста */
+    padding: 10px; /* Внутренние отступы */
+    border-radius: 5px; /* Закругляем углы */
+    transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
+    border: 2px solid transparent; /* Обводка */
+}
+
+.personal-cabinet-button:hover {
+    background-color: #d6ae01; /* Цвет фона при наведении */
+    color: #333; /* Цвет текста при наведении */
+    padding: 10px; /* Дополнительные стили, если нужны */
+    border-radius: 5px; /* Дополнительные стили, если нужны */
+    transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
+    border-color: #333; /* Изменение цвета обводки при наведении */
+}
